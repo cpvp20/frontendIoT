@@ -11,13 +11,5 @@
   "dependencies": {
     "express": "^4.17.1"
   },
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/cpvp20/appWebFront.git"
-  },
-  "bugs": {
-    "url": "https://github.com/cpvp20/appWebFront/issues"
-  },
-  "homepage": "https://github.com/cpvp20/appWebFront#readme",
   "description": ""
 }

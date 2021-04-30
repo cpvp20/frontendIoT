@@ -1,7 +1,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Plataforma</title>
+    <title>Cambia tus datos</title>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/css/bootstrap.min.css"
         integrity="sha384-TX8t27EcRE3e/ihU7zmQxVncDAy5uIKz4rEkgIXeMed4M0jlfIDPvg6uqKI2xXr2" crossorigin="anonymous">
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.0/css/all.css"
@@ -18,99 +18,70 @@
             aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
         </button>
+
         <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
             <div class="navbar-nav">
-                <a class="nav-link" href="/bosques/getAll">Bosques</a>
-                <a class="nav-link" href="/especies/getAll">Especies</a>
-                <a class="nav-link " href="/rescates/getAll">Reportes de Rescate</a>
-                <a class="nav-link" href="/animales/getAll">Animales</a><a class="nav-link " href="/fichas/getAll">Fichas Medicas</a>
-                <a class="nav-link" href="/reportes/getAll">Reportes Automatizados</a>
-                <a class="nav-link active " href="/usuarios/getAll">Usuarios</a>
-<a class="nav-link" type="button" onclick="localStorage.tokenUser=''; window.location.href='/login';">Logout</a>
+                <a class="nav-link" href="/analytics/logs">Notificaciones</a>
+                <a class="nav-link" href="/analytics/day">Analytics</a>
+                <a class="nav-link" type="button"
+                    onclick="localStorage.tokenUser=''; window.location.href='/login';">Logout</a>
             </div>
         </div>
+
     </nav>
-    
-    <h1 class="text-center" style="color: #303030; letter-spacing:3px; padding-bottom:40px; padding-top:30px;" >update Usuario</h1>
-    
+    <h1 class="text-center" style="color: #303030; letter-spacing:3px; padding-bottom:40px; padding-top:30px;">
+        Cambia tus datos</h1>
+
     <div class="container" id="contenido" style="padding-bottom: 100px;">
         <form id="formupdate">
-            <div class="row">
-                <div class="col">
-                    <label for="nombre">Nombre</label>
-                    <input required type="text" class="form-control" id="nombre">
-                </div>
-                <div class="col">
-                    <label for="apellidos">Apellidos</label>
-                    <input required type="text" class="form-control" id="apellidos">
-                </div>
 
-            </div>
-            <div class="row">
-                <div class="col">
-                    <label for="IMSS">IMSS</label>
-                    <input type="text" class="form-control" id="IMSS">
-                </div>
-                <div class="col">
-                    <label for="telefono">Telefono</label>
-                    <input type="text" class="form-control" id="telefono">
-                </div>
-                <div class="col">
-                    <label for="correo">Correo</label>
-                    <input type="email" class="form-control" id="correo" disabled>
-                </div>
-            </div>
+            <div class="row justify-content-center">
+                <div class="col-lg-6 col-sm-12 ">
+                    <div class="card">
+                        <div class="card-body" id="cardBodyRescate">
+                            <div class="form-group">
+                                <label for="name">Nombre</label>
+                                <input required type="name" class="form-control" id="name">
+                            </div>
+                            <div class="form-group">
+                                <label for="last_name">Apellido</label>
+                                <input required type="last_name" class="form-control" id="last_name">
+                            </div>
+                            <div class="form-group">
+                                <label for="phone">Telefono</label>
+                                <input required type="number" class="form-control" id="phone">
+                            </div>
+                            <div class="form-group">
+                                <label for="email">Correo</label>
+                                <input required type="email" class="form-control" id="email" disabled>
+                            </div>
+                            <div class="form-group">
+                                <label for="patient_name">Nombre del paciente</label>
+                                <input required type="patient_name" class="form-control" id="patient_name">
+                            </div>
+                            <div class="form-group">
+                                <label for="patient_last_name">Apellidos del paciente</label>
+                                <input required type="patient_last_name" class="form-control" id="patient_last_name">
+                            </div>
+                            <div class="form-group">
+                                <label for="patient_age">Edad del paciente</label>
+                                <input required type="number" class="form-control" id="patient_age">
+                            </div>
+                            <div class="form-group">
+                                <label for="patient_id">ID del dispositivo</label>
+                                <input required type="number" class="form-control" id="patient_id" disabled>
+                            </div>
+                      
+                        </div>
+                        <button type="submit" class="btn btn-info">Guardar</button>
 
-            <div class="row">
-                <div class="col">
-                    <label for="alergias">Alergias</label>
-                    <input type="text" class="form-control" id="alergias">
-                </div>
-                <div class="col">
-                    <div class="form-group">
-                        <label for="fecha_nacimiento">Fecha de Nacimiento</label>
-                        <input required type="date" class="form-control" id="fecha_nacimiento">
-                    </div>
-                </div>
-                <div class="col">
-                    <div class="form-group">
-                        <label for="tipo_sangre">Tipo de Sangre</label>
-                        <select required class="form-control" id="tipo_sangre">
-                            <option>O+</option>
-                            <option>O-</option>
-                            <option>A+</option>
-                            <option>B+</option>
-                            <option>Indeterminado</option>
-                        </select>
                     </div>
                 </div>
             </div>
 
-            <button type="submit" class="btn btn-info">Actualizar</button>
+
         </form>
     </div>
-
-    <button style="position: fixed; bottom: 70px; right: 70px; width: 70px; height: 70px; font-size: 40px; line-height: 40px; border-radius: 100%; "
-    type="button" class="btn btn-info" onclick="verBorrar()" data-toggle="modal" data-target="#modalBorrar"><i class="fas fa-trash-alt"></i></button>
-
-    <div class="modal" tabindex="-1" id="modalBorrar">
-        <div class="modal-dialog">
-          <div class="modal-content">
-            <div class="modal-header">
-              <h5 class="modal-title">Estas seguro/a que quieres borrar este usuario?</h5>
-              <button type="button" class="close" data-dismiss="modal" aria-label="Close"></button>
-            </div>
-            <div class="modal-body" id="">
-              <p id="usuarioABorrar"></p>
-            </div>
-            <div class="modal-footer">
-              <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
-              <button onclick="borrar()" class="btn btn-info">Confirmar</button>
-            </div>
-            </form>
-          </div>
-        </div>
-      </div>
 
     <!-- JavaScript -->
     <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"

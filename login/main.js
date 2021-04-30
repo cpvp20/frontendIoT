@@ -1,16 +1,16 @@
 let formLogin = document.querySelector('#formLogin');
-/*
-formLogin.addEventListener("submit", function (e) {
-    e.preventDefault(); // para que no te recargue la página cuando sometes el formulario
 
-    //obtén el valor del correo y del password y mándalo al back-end para obtener un token del usuario
+formLogin.addEventListener("submit", function (e) {
+    e.preventDefault(); // para que no se recargue la página cuando sometes el formulario
+
+    //obtener el valor del email y del password y mándalo al back-end para obtener un token del usuario
     let usuario = {
-        "correo": formLogin.correo.value,
+        "email": formLogin.email.value,
         "password": formLogin.password.value
     };
     //Manda la información al back-end para obtener un token del usuario
     let request = new XMLHttpRequest();
-    request.open('POST', 'https://localhost:3000/api/login');
+    request.open('POST', 'https://backend-domotica.herokuapp.com/login');
     request.setRequestHeader('Content-Type', 'application/json');
     request.send([JSON.stringify(usuario)]);
 
@@ -26,4 +26,4 @@ formLogin.addEventListener("submit", function (e) {
     }
 });
 
-*/
+

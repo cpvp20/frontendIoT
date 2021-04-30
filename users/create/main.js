@@ -1,35 +1,34 @@
-/*
+
 var formcreate = document.querySelector('#formcreate');
 
 formcreate.addEventListener("submit", function (e) {
     e.preventDefault(); // para que no te recargue la página cuando sometes el formulario
 
     //Este handler debe atrapar todos los valores del formulario en un objeto que cumpla con lo que pide el back-end
-    let nuevoUsuario = {
-        "nombre": formcreate.nombre.value,
-        "apellidos": formcreate.apellidos.value,
-        "correo": formcreate.correo.value,
+    let newUser = {
+        "name": formcreate.name.value,
+        "last_name": formcreate.last_name.value,
+        "patient_name": formcreate.patient_name.value,
+        "patient_last_name": formcreate.last_name.value,
+        "patient_age": formcreate.patient_age.value,
+        "patient_id": formcreate.patient_id.value,
+        "email": formcreate.email.value,
         "password": formcreate.password.value,
-        "IMSS": formcreate.IMSS.value,
-        "fecha_nacimiento": formcreate.fecha_nacimiento.value,
-        "telefono": formcreate.telefono.value,
-        "alergias": formcreate.alergias.value,
-        "tipo_sangre": formcreate.tipo_sangre.value
+        "phone": formcreate.phone.value,
     };
-    console.log(nuevoUsuario);
+    console.log(newUser);
     //Manda la información al back-end  
 
     let request = new XMLHttpRequest();
 
-    request.open('POST', 'https://localhost:3000/api/usuarios');
+    request.open('POST', 'https://backend-domotica.herokuapp.com/users');
     request.setRequestHeader('Content-Type', 'application/json');
-    request.setRequestHeader('x-user-token', localStorage.tokenUser);
-    request.send([JSON.stringify(nuevoUsuario)]); 
+    request.send([JSON.stringify(newUser)]); 
 
     request.onload = () => {
         if (request.status == 200) {
             alert('Usuario ha sido registrado exitosamente');
-            window.location.href = "../getAll/";
+            window.location.href = "/home";
         } else if (request.status == 400) {
             alert('Error ' + request.status + ': ' + request.responseText); //error de usuario
         } else if (request.status == 500) {
@@ -39,5 +38,3 @@ formcreate.addEventListener("submit", function (e) {
         }
     };
 });
-
-*/

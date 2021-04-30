@@ -28,12 +28,29 @@
         </div>
     </nav>
 
-    <h1 id="h1" class="text-center" style="color: #303030; letter-spacing:3px; padding-bottom:40px; padding-top:30px;">Home</h1>
+    <h1 class="text-center" style="color: #303030; letter-spacing:3px; padding-bottom:40px; padding-top:30px;">Historial
+    </h1>
 
     <div class="container" id="contenido" style="padding-bottom: 100px;">
-        <h3 id="welcome">Bienvenido/a </h3>       
+        <div class="table-responsive">
+
+            <table class="table table-hover">
+                <thead>
+                    <tr>
+                        <th scope="col">Tipo</th>
+                        <th scope="col">Fecha</th>
+                        <th scope="col">Hora</th>
+                    </tr>
+                </thead>
+                <tbody id="CuerpoTablaRequests">
+                    <!--son cargados por js-->
+                </tbody>
+            </table>
+        </div>
 
     </div>
+
+
 
     <!-- JavaScript -->
     <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"
@@ -47,7 +64,4 @@
     </script>
 
     <script src="./main.js"></script>
-
 </body>
-
-</html>

@@ -1,29 +1,24 @@
 const params = new URLSearchParams(window.location.search);
-console.log('Editando al usuario ' + params.get('correo'));
 let formupdate = document.querySelector('#formupdate');
-let usuario;
+let user;
 
 function llenarForm() {
     let request = new XMLHttpRequest();
-    request.open('GET', `https://localhost:3000/api/usuarios/${params.get('correo')}`);
+    request.open('GET', `https://backend-domotica.herokuapp.com/users/${params.get('email')}`);
     request.setRequestHeader('x-user-token', localStorage.tokenUser);
     request.send();
 
     request.onload = () => {
         if (request.status == 200) {
-            usuario = JSON.parse(request.responseText);
-            formupdate.nombre.value = usuario.nombre
-            formupdate.apellidos.value = usuario.apellidos;
-            formupdate.correo.value = usuario.correo;
-            formupdate.fecha_nacimiento.value = new Date(usuario.fecha_nacimiento).toLocaleDateString('es-ES', {
-                day: '2-digit',
-                month: '2-digit',
-                year: 'numeric'
-            }).split("/").reverse().join("-");
-            formupdate.alergias.value = usuario.alergias;
-            formupdate.tipo_sangre.value = usuario.tipo_sangre;
-            formupdate.telefono.value = usuario.telefono;
-            formupdate.IMSS.value = usuario.IMSS;
+            user = JSON.parse(request.responseText);
+            formupdate.name.value = user.name
+            formupdate.last_name.value = user.last_name;
+            formupdate.patient_name.value = user.patient_name
+            formupdate.patient_last_name.value = user.patient_last_name;
+            formupdate.patient_age.value = user.patient_age
+            formupdate.patient_id.value = user.patient_id
+            formupdate.email.value = user.email;
+            formupdate.phone.value = user.phone;
         } else if (request.status == 500) {
             alert('Error ' + request.status + ': ' + request.statusText); //error servidor
         } else if (request.status == 401) {
@@ -39,51 +34,30 @@ formupdate.addEventListener("submit", function (e) {
     e.preventDefault(); // para que no te recargue la página cuando sometes el formulario
 
     //Este handler debe atrapar todos los valores del formulario en un objeto que cumpla con lo que pide el back-end
-    let nuevoUsuario = {
-        "nombre": formupdate.nombre.value,
-        "apellidos": formupdate.apellidos.value,
-        "alergias": formupdate.alergias.value,
-        "IMSS": formupdate.IMSS.value,
-        "fecha_nacimiento": formupdate.fecha_nacimiento.value,
-        "tipo_sangre": formupdate.tipo_sangre.value,
-        "telefono": formupdate.telefono.value
-        //correo y fecha registro no cambian
+    let newUser = {
+        "name": formupdate.name.value,
+        "last_name": formupdate.last_name.value,
+        "patient_name": formupdate.patient_name.value,
+        "patient_last_name": formupdate.patient_last_name.value,
+        "patient_age": formupdate.patient_age.value,
+        "phone": formupdate.phone.value,
     };
     //Manda la información al back-end  
     let request = new XMLHttpRequest();
-    request.open('PUT', `https://localhost:3000/api/usuarios/${params.get('correo')}`);
+    request.open('PUT', `https://backend-domotica.herokuapp.com/users/${params.get('email')}`);
     request.setRequestHeader('x-user-token', localStorage.tokenUser);
     request.setRequestHeader('Content-Type', 'application/json');
-    request.send([JSON.stringify(nuevoUsuario)]);
+    request.send([JSON.stringify(newUser)]);
 
     request.onload = () => {
         if (request.status == 200) {
-            alert('Usuario ha sido actualizado exitosamente');
-            window.location.href = "../getAll/";
+            alert('Tu usuario ha sido actualizado exitosamente');
+            window.location.href = "/home";
         } else if (request.status == 400) {
-            alert('Error ' + request.status + ': ' + request.responseText); //error de usuario
+            alert('Error ' + request.status + ': ' + request.responseText); //error de user
         } else if (request.status == 500) {
             alert('Error ' + request.status + ': ' + request.statusText); //error servidor
         }
     };
 });
 
-function verBorrar() {
-    str = usuario.nombre + ' ' + usuario.apellidos;
-    document.querySelector('#usuarioABorrar').append(str);
-}
-
-function borrar() {
-    let request = new XMLHttpRequest();
-    request.open('DELETE', `https://localhost:3000/api/usuarios/${params.get('correo')}`);
-    request.setRequestHeader('x-user-token', localStorage.tokenUser);
-    request.send();
-    request.onload = () => {
-        if (request.status == 200) {
-            alert('Usuario borrado exitosamente'); //Muestra mensaje de exito
-            window.location.href = "../getAll/";
-        } else {
-            alert('Error al tratar de borrar del usuario');
-        }
-    }
-}
